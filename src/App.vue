@@ -1,26 +1,80 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+        <ModalWindow :isActive="this.isActive" @unSetIsActive="unSetIsActive"/>
+        <NavbarRow @setIsActive="setIsActive" />
+        <router-view></router-view>
+        <FooterRow />
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavbarRow from "@/components/NavbarRow";
+import FooterRow from "@/components/FooterRow";
+import ModalWindow from "@/components/ModalWindow";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        ModalWindow,
+        FooterRow,
+        NavbarRow
+    },
+
+    data() {
+        return {
+            isActive: false
+        }
+    },
+
+    methods: {
+        setIsActive() {
+            this.isActive = true
+        },
+
+        unSetIsActive() {
+            this.isActive = false
+        }
+    },
+
+    mounted() {
+        window.addEventListener('resize', () => {
+            this.isActive = false
+        })
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url("./assets/images/bg.png");
+}
+
+p, ul {
+    line-height: 24px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 </style>
