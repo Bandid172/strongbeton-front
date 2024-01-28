@@ -41,19 +41,19 @@ export default {
         const swiperImageBase = ref([
             {
                 id: 1,
-                img: require("../assets/images/logo7.png")
+                img: require("../assets/images/Beeline-Recharge.jpg")
             },
             {
                 id: 2,
-                img: require("../assets/images/logo11.png")
+                img: require("../assets/images/unnamed.png")
             },
             {
                 id: 3,
-                img: require("../assets/images/logo3.png")
+                img: require("../assets/images/unnamed (1).png")
             },
             {
                 id: 4,
-                img: require("../assets/images/16.png")
+                img: require("../assets/images/82c9b5fd3f0d10bc8694a64d24aa40f1.jpg")
             },
             {
                 id: 5,
@@ -98,10 +98,10 @@ export default {
 <style scoped>
 
 .swiper-slide img {
-    max-width: 200px;
+    max-width: 220px;
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    height: 145px;
+    margin: 50px 5px;
     padding: 0 7px;
 }
 </style>

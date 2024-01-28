@@ -1,10 +1,13 @@
 <template>
+    <div class="success-message" id="success-message">
+        <p>Application Submitted Successfully</p>
+    </div>
     <div class="modal" v-if="isActive">
         <div class="modal-dialog">
             <div class="modal-content">
                 <span class="close" @click="DisActivateModalWindow">&times;</span>
                 <slot>
-                    <form @submit="submitApplication">
+                    <form @submit.prevent="submitApplication">
                         <label for="name">Name<span>*</span></label>
                         <input v-model="formData.name" id="name" type="text" required placeholder="John Doe" />
                         <label for="phoneNumber">Number<span>*</span></label>
@@ -44,6 +47,18 @@ export default {
 
         submitApplication() {
             this.pushClient(this.formData)
+                .then(() => {
+                    this.formData.name = ''
+                    this.formData.phoneNumber = ''
+                    this.DisActivateModalWindow()
+                })
+                .finally(() => {
+                    document.getElementById('success-message').style.display = 'flex'
+
+                    setTimeout(() => {
+                        document.getElementById('success-message').style.display = 'none'
+                    },2000)
+                })
         }
     },
 
@@ -54,6 +69,22 @@ export default {
 </script>
 
 <style scoped>
+.success-message {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    display: none;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: #5cb85c;
+    color: #fff;
+    text-align: center;
+    width: 400px;
+    height: 50px;
+    z-index: 101;
+    transform: translate(-50%);
+}
 
 .modal {
     display: flex;

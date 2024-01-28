@@ -1,4 +1,7 @@
 <template>
+    <div class="success-message" id="success-message">
+        <p>Application Submitted Successfully</p>
+    </div>
     <footer class="footer">
         <div class="upper__footer">
             <section class="credentials">
@@ -20,7 +23,7 @@
             </section>
             <section class="application__submit">
                 <h2>Submit application</h2>
-                <form class="application-form" @submit="handleFormSubmit">
+                <form class="application-form" @submit.prevent="handleFormSubmit">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" v-model="formData.name" required>
                     <p class="danger" v-if="nameIsEmpty">Name is required</p>
@@ -39,6 +42,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+
 export default {
     name: "FooterRow",
     data() {
@@ -48,14 +52,26 @@ export default {
             formData: {
                 name: null,
                 phoneNumber: null
-            }
+            },
+            loading: false
         }
     },
     methods: {
         ...mapActions(['pushClient']),
 
         handleFormSubmit() {
+            this.loading = true
             this.pushClient(this.formData)
+                .finally(() => {
+                    this.formData.name = null
+                    this.formData.phoneNumber = null
+
+                    document.getElementById('success-message').style.display = 'flex'
+
+                    setTimeout(() => {
+                        document.getElementById('success-message').style.display = 'none'
+                    }, 2000)
+                })
         },
 
         handleSubmit()
@@ -89,6 +105,22 @@ export default {
 </script>
 
 <style scoped>
+.success-message {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    display: none;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: #5cb85c;
+    color: #fff;
+    text-align: center;
+    width: 400px;
+    height: 50px;
+    z-index: 101;
+    transform: translate(-50%);
+}
 
 .upper__footer {
     display: flex;
@@ -223,8 +255,6 @@ export default {
     .application__submit {
         align-self: flex-end;
     }
-
-
 }
 
 </style>

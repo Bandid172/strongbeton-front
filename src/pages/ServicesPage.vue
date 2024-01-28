@@ -21,7 +21,6 @@
                 <img :src="'http://localhost:8505/' + product.picture.contentUrl" />
                 <div class="details">
                     <router-link :to="'/concrete-info/' + product.id" class="router--link">{{ product.name }}</router-link>
-                    <h3>{{ product.price }}</h3>
                 </div>
             </div>
         </div>
