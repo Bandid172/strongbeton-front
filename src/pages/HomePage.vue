@@ -61,39 +61,6 @@
                 </div>
             </section>
             <section>
-                <h1>Our Team</h1>
-                <div class="our-team snaps-inline">
-                    <div class="team-card">
-                        <img src="../assets/images/Rectangle37.png" />
-                        <div class="employee-info">
-                            <h2>John Doe</h2>
-                            <p>Sales Manager</p>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="../assets/images/Rectangle38.png" />
-                        <div class="employee-info">
-                            <h2>Steve Clark</h2>
-                            <p>Primal Engineer</p>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="../assets/images/Rectangle39.png" />
-                        <div class="employee-info">
-                            <h2>Amanda Jackson</h2>
-                            <p>Accounting Manager</p>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="../assets/images/Rectangle40.png" />
-                        <div class="employee-info">
-                            <h2>Peter Smith</h2>
-                            <p>General Manager</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section>
                 <h2>Who trusts us?</h2>
                 <ImageSwiper />
             </section>
@@ -220,125 +187,6 @@ section {
     border-radius: 10px;
 }
 
-.our-team {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
-    margin-top: 40px;
-    overflow-y: scroll;
-}
-
-.our-team {
-    display: grid;
-    grid-auto-flow: column;
-
-    overflow-y: hidden;
-    overflow-x: auto;
-    overscroll-behavior: contain;
-}
-
-.our-team::-webkit-scrollbar {
-    border-radius: 6px;
-    background: #BCBCBC;
-    height: 10px;
-}
-
-.our-team::-webkit-scrollbar-thumb {
-    background: #3E3E3E;
-    border-radius: 6px
-}
-
-.snaps-inline {
-    scroll-snap-type: inline mandatory;
-}
-
-.snaps-inline > * {
-    scroll-snap-align: start;
-}
-
-.team-card {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 300px;
-    margin: 30px 0;
-    padding-bottom: 10px;
-}
-
-.team-card img{
-    max-width: 300px;
-    min-width: 200px;
-    width: 100%;
-    transition: all .5s;
-}
-
-.team-card img:hover {
-    transform: scale(0.95);
-}
-
-.employee-info h2 {
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.carousel {
-    position: relative;
-    overflow: hidden;
-    margin: 30px auto 50px;
-}
-
-.carousel-track-container {
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-track img {
-    max-width: 130px;
-    height: 130px;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    font-size: 1rem;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.carousel-button.left {
-    left: 10px;
-}
-
-.carousel-button.right {
-    right: 10px;
-}
-
-.carousel-track {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.carousel-slide {
-    min-width: 35%;
-    box-sizing: border-box;
-    margin-right: 10px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease;
-    flex: 0 0 auto;
-}
-
 @media (max-width: 1199px) {
     .company-overview {
         grid-template-columns: repeat(3,1fr);
@@ -357,15 +205,23 @@ section {
     }
 }
 
-@media (max-width: 768px) {
-    .carousel-slide {
-        width: 50%;
-    }
-}
-
 @media (max-width: 740px) {
     .company-overview {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card {
+        max-width: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-align: justify;
+        flex-direction: column;
+    }
+
+    .card article h3 {
+        text-align: center;
     }
 }
 
@@ -373,10 +229,6 @@ section {
     .production-info a {
         font-size: 12px;
         text-align: center;
-    }
-
-    .carousel-slide {
-        width: 100%;
     }
 }
 

@@ -10,7 +10,7 @@
             <div class="carousel-content">
                 <h2>{{ slide.title }}</h2>
                 <p>{{ slide.description }}</p>
-                <router-link to="/services">Know price</router-link>
+                <router-link to="/services">More Details</router-link>
             </div>
         </div>
     </div>

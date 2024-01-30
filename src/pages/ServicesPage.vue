@@ -16,7 +16,12 @@
             </div>
             <img src="../assets/images/Rectangle55.png" alt="picture" />
         </div>
-        <div class="concrete-blocks">
+        <div v-if="loading" class="loading">
+            <div v-if="loading" class="loading-spinner">
+                <div class="spinner-inner"></div>
+            </div>
+        </div>
+        <div class="concrete-blocks" v-if="loading === false">
             <div class="concrete-block" v-for="product in getProducts" :key="product.id">
                 <img :src="'http://localhost:8505/' + product.picture.contentUrl" />
                 <div class="details">
@@ -32,12 +37,23 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "ServicesPage",
+
+    data() {
+        return {
+            loading: false
+        }
+    },
+
     methods: {
         ...mapActions(['fetchProducts'])
     },
 
     mounted() {
+        this.loading = true
         this.fetchProducts()
+            .finally(() => {
+                this.loading = false
+            })
     },
 
     computed: {
@@ -47,6 +63,40 @@ export default {
 </script>
 
 <style scoped>
+.loading {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.spinner-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid #f3f3f3;
+    border-top-color: #3498db;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .ready-mixed-concrete {
     display: flex;

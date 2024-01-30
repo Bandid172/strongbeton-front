@@ -28,7 +28,6 @@ export default {
                 axios
                     .get('http://localhost:8505/api/products/' + productId)
                     .then((response) => {
-                        console.log(response)
 
                         let product = {
                             name: response.data.name,

@@ -57,7 +57,7 @@ export default {
             },
             {
                 id: 5,
-                img: require("../assets/images/logo9.png")
+                img: require("../assets/images/logo3.png")
             },
             {
                 id: 6,
